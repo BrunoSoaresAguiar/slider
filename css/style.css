@@ -20,21 +20,25 @@ main{
     overflow: hidden;
 }
 .carrossel{
+    width: 100%;
     display: flex;
     position: relative;
-    width: 100%;
 }
+
 .item{
     width: var(--width); /*Estou puxando a largura personalizada no html*/
     height: var(--height);/*Estou puxando a altura personalizada no html*/
     position: absolute;
     left: 100%;
     animation: autoRun 10s linear infinite; /*Aqui eu chamo a função, defino o tempo de duração, modo de exibição e se vai parar ou não*/
-    animation-delay:  calc(10 / var(--quantity) * var(--delay));         /*Quanto tempo a animação demora vai demorar para começar, cada div tem seu tempo de delay para não sairem todas juntas*/
+    animation-delay:  calc(10 / var(--quantity) * var(--delay)) !important;         /*Quanto tempo a animação demora vai demorar para começar, cada div tem seu tempo de delay para não sairem todas juntas*/
     cursor: pointer;
 }
 .item img{
     width: 100%;
+}
+.container.reverse .item{
+    animation: reverseRun 10s linear infinite;
 }
 
 /*Essa função, independente do nome, cria a animação de carrossel*/
@@ -45,4 +49,13 @@ main{
     to{
         left: -50px;
     }/*Destino, ou onde finaliza o carrossel*/
+}
+
+@keyframes reverseRun{
+    from{
+        left: -200px; 
+    }
+    to{
+        left: 100%;
+    }
 }
